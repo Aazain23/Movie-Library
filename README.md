@@ -25,4 +25,5 @@ Before you begin, ensure you have met the following requirements:
 
 - Node.js and npm installed on your machine
 - MongoDB instance running
-
+## Deployed Link
+https://movieplaylistaazain.netlify.app/
