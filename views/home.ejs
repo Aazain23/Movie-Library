@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <main>
+        <div class="search-container">
+            <div class="title">
+                <h2>Enter Movie Name</h2>
+            </div>
+            <input type="text" placeholder="Type Movie Name" id="movie-name" required>
+            <button id="clicked">Search</button>
+        </div>
+    </main>
+    
+    <div id="result">             
+    </div>
+    
+    <% if (!locals.user) { %>
+    <div id="note">
+        <p>Note: Please login to create playlist, even then you can search movie without login</p>
+    </div>
+    <% } %>
+
+    <% if (locals.user) { %>
+    <div id="add-to-playlist">
+    <% } %>
+    </div>
+    
+    <div class="movies-list">
+        <% if (movies) { %>
+            <% movies.forEach(movie => { %>
+                <% if (locals.user && locals.user.id == movie.user.id) { %>
+                <ul>
+                    <li><%= movie.movie %></li>
+                    <li><a href="/movies/destroy/<%= movie._id %>">
+                        <i class="material-icons">delete</i>
+                        </a>
+                    </li>
+                </ul>
+                <% } %>
+            <% }) %>
+        <% } else { %>
+            <!-- Handle the case when movies is undefined -->
+            <p>No movies available</p>
+        <% } %>
+    </div>
+</div>
+<script src="/scripts/script.js"></script>
+</body>
+</html>
